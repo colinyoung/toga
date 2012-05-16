@@ -1,3 +1,5 @@
+require 'yaml'
+
 module Toga
   class Togafile
     
@@ -28,7 +30,7 @@ module Toga
       def append_to_group(group_name, string)
         lines = self.to_a
         range = group_range(group_name)
-        last_index = range.first + (range.last - range.first)
+        last_index = range.last
         
         # Insert string at the end of the group
         lines.insert(last_index+1, string)
@@ -107,17 +109,17 @@ module Toga
         in_group = false      
         i = 0
         range_start = 0
-        range_end = 0
+        range_end = i
       
         file_handle.each do |line|
           is_heading = line.match(HEADING_REGEX)
-          is_other_heading = is_heading && is_heading != in_group
           first_line = line.starts_with?(group_name, case_sensitive: false)
+          is_other_heading = !first_line
           in_group = first_line || in_group && !is_heading
           
           range_start = i if first_line
-                  
-          if in_group && !is_heading && line.strip.length > 0
+          
+          if in_group
             range_end = i
           end
         
