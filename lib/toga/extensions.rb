@@ -18,9 +18,9 @@ end
 
 class Array
   def includes_prefix?(prefix)
-    self.each do |str|
+    self.each_with_index do |str, i|
       next if !str.is_a? String
-      return true if str.starts_with?(prefix)
+      return i if str.starts_with?(prefix)
     end
     false
   end

@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require 'minitest/unit'
 require 'mocha'
 require 'fileutils'
 
@@ -10,7 +11,7 @@ describe Toga::CLI do
     @directory = File.expand_path(File.dirname(__FILE__) + '/test_output')
   end
 
-  describe 'init' do    
+  describe 'init' do
     it 'creates the file' do
       seed_togafile
     end
@@ -22,24 +23,36 @@ describe Toga::CLI do
     it 'adds a new task to the current group' do
       add_new_task('Run toga tests')
       
-      Toga::Tasks.group(:current).includes_prefix?('Run toga t').must_equal(true)
+      assert Toga::Tasks.group(:current).includes_prefix?('Run toga t')
     end
   end
   
   describe 'complete' do
-    before { seed_togafile; add_new_task('Run toga tests') }
+    before do
+      seed_togafile
+      add_new_task('Run toga tests')
+    end
     
     it 'moves a task to the completed group' do
       Toga::Commands::Complete.run! ['Run toga t']
-      Toga::Tasks.group(:completed).includes_prefix?('Run toga t').must_equal(true)
+      
+      refute Toga::Tasks.group(:current).includes_prefix?('Run toga t'), "Current group should NOT have task"
+      Toga::Tasks.group(:completed).include?('Run toga tests').must_equal(true)
     end
   end
   
   describe 'uncomplete, current' do
-    before { seed_togafile }
+    before do 
+      seed_togafile
+      add_new_task('Run toga tests')
+      Toga::Commands::Complete.run! ['Run toga t']
+    end
     
     it 'moves a task back to current group' do
       Toga::Commands::Uncomplete.run! ["Run toga t"]
+      
+      refute Toga::Tasks.group(:completed).includes_prefix?('Run toga t'), "Completed group should NOT have task"
+      Toga::Tasks.group(:current).include?('Run toga tests').must_equal(true)
     end
   end
   
