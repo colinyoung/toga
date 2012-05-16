@@ -28,7 +28,7 @@ module Toga
       def append_to_group(group_name, string)
         lines = self.to_a
         range = group_range(group_name)
-        last_index = range.first + range.last
+        last_index = range.first + (range.last - range.first)
         
         # Insert string at the end of the group
         lines.insert(last_index+1, string)
