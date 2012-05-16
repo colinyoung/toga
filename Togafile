@@ -1,0 +1,20 @@
+CURRENT
+
+! If you use a random heading in your file, the system includes its tasks in the preceding group
+Print group name even if group is empty
+Synchronize how docs refer to "complete" with the codebase
+Prepend "[x]" items to tasks
+
+LATER
+
+Add 'later' command
+Append timestamps on complete
+Append commit logs on push
+
+MAYBE
+
+Import previous git commit messages and put into completed group, so that toga is already sexy
+Scan for @todos in project and create `later` tasks for them
+Support multiline tasks (kind of don't want to)
+
+COMPLETED
