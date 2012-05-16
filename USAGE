@@ -1,0 +1,25 @@
+Toga is a todo list for git.
+
+    Usage:
+      toga -h/--help
+      toga -v/--version
+      toga command [arguments...] [options...]
+      
+    Examples:
+      toga                  An empty command just prints this usage.
+      toga <PATH>           Creates a Togafile in that directory.
+      toga edit             Opens up the Togafile in your local editor.
+      toga ignore           .gitignores your Togafile
+      toga share            un-ignores your Togafile in .gitignore
+
+      toga complete
+           do
+           finish
+           done             Marks a task as completed.
+
+      toga clean            Moves all completed tasks to the COMPLETED group.
+      toga push             Performs a `git push`, and adds commit refs to the finished tasks in your Togafile.
+      
+    Further help:
+      
+      http://github.com/colinyoung/toga

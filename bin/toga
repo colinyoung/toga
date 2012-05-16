@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+require 'toga'
+exit Toga::CLI.new(*ARGV).return_value || 0
