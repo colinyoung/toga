@@ -2,13 +2,16 @@ CURRENT
 
 Synchronize how docs refer to "complete" with the codebase
 
+Add later command and current command.
 LATER
 
 
-Add 'later' command
 Append timestamps on complete
 Append commit logs on push
 
+
+
+Add later
 MAYBE
 
 Import previous git commit messages and put into completed group, so that toga is already sexy
