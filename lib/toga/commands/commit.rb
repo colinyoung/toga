@@ -23,6 +23,7 @@ module Toga
         puts "Committing task:\n  #{message}\n\n"
         
         # Show the user the files they're leaving behind and ask to continue or die
+        files_to_add = '.'
         if untracked.count > 0 || modified.count > 0 || added.count == 0
           if untracked.count > 0
             puts error("You didn't add the following files:\n")
@@ -36,11 +37,15 @@ module Toga
           
           if added.count == 0
             changed = git.status.changed.keys
+            files_to_add = changed
             puts error("The following files are modified, but their changes aren't added:\n")
             puts changed.join("\n") + "\n\n"
           end
           
-          puts "Continue committing? [y/a/n] (y: continue, don't stage; a: add them using git add .; n: cancel/exit)"
+          puts "Continue committing? [y/a/n] (
+  y: continue, don't stage
+  a: add them using git add #{files_to_add}
+  n: cancel/exit)"
           continue = $stdin.gets
           response = continue[0].downcase
           if !["a", "y"].include? response
@@ -48,7 +53,7 @@ module Toga
           end
           
           if response == "a"
-            git.add('.')
+            git.add(files_to_add)
             puts "Added:\n" + (untracked + modified + (changed || [])).join("\n")
           end
         end
@@ -64,7 +69,7 @@ module Toga
         end
         
         puts "# Add an optional message (or press enter): "
-        full_message << $stdin.gets
+        full_message = message << $stdin.gets
         `git commit -m "#{full_message.gsub(/"/, '\"')}"`
         
         Commands::Complete.run!(message)

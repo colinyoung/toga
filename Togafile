@@ -6,6 +6,7 @@ Synchronize how docs refer to "complete" with the codebase
 
 LATER
 
+
 Add 'later' command
 Append timestamps on complete
 Append commit logs on push
@@ -16,5 +17,12 @@ Import previous git commit messages and put into completed group, so that toga i
 Scan for @todos in project and create `later` tasks for them
 Support multiline tasks (kind of don't want to)
 
+
+
 COMPLETED
 Make toga commit interactive
+
+
+
+
+

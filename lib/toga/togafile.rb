@@ -1,7 +1,7 @@
 module Toga
   class Togafile
     
-    CATEGORY_HEADINGS = ['CURRENT', 'COMPLETED', 'LATER'] 
+    HEADING_REGEX = /^[A-Z\ ]{3,}+/
     
     def self.path
       @@path ||= File.expand_path(File.join(Dir.getwd, Toga::TOGAFILE_NAME))
@@ -104,15 +104,14 @@ module Toga
         group_name = group_name.to_s
       
         lines = []
-        other_headings = CATEGORY_HEADINGS - [group_name.upcase]
         in_group = false      
         i = 0
         range_start = 0
         range_end = 0
       
         file_handle.each do |line|
-          is_heading = line.starts_with?(CATEGORY_HEADINGS, case_sensitive: false)
-          is_other_heading = line.starts_with?(other_headings, case_sensitive: false)
+          is_heading = line.match(HEADING_REGEX)
+          is_other_heading = is_heading && is_heading != in_group
           first_line = line.starts_with?(group_name, case_sensitive: false)
           in_group = first_line || in_group && !is_heading
           
@@ -131,7 +130,7 @@ module Toga
       def group_at(offset)
         group = ""
         file_handle.each_with_index do |line, i|
-          if line.starts_with?(CATEGORY_HEADINGS, case_sensitive: false)
+          if line.match(HEADING_REGEX)
             group = line[0../\W/ =~ line].strip
           end
           
