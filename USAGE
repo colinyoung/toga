@@ -8,6 +8,7 @@ Toga is a todo list for git.
     Examples:
       toga                  An empty command just prints this usage.
       toga <PATH>           Creates a Togafile in that directory.
+      toga list <GROUP>	    Prints the task list. Optionally, print a specific list by name.
       toga edit             Opens up the Togafile in your local editor.
       toga ignore           .gitignores your Togafile
       toga share            un-ignores your Togafile in .gitignore
