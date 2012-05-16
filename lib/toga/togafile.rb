@@ -37,6 +37,18 @@ module Toga
         overwrite(lines)
       end
       
+      def prepend_to_group(group_name, string)
+        lines = self.to_a
+        range = group_range(group_name)
+        first_index = range.first + 1 # Add one to bypass title
+        
+        # Insert string at the end of the group
+        lines.insert(first_index+1, string)
+        
+        # Write array back to file
+        overwrite(lines)
+      end
+      
       def remove_from_group(group_name, string)
         offset = lines_in_group(group_name).includes_prefix?(string)
         if !offset
@@ -75,6 +87,13 @@ module Toga
         full = lines[offset]
         offset_in_group = offset - group_range(group_name).first
         [full, group_name, offset_in_group]
+      end
+      
+      # Moves a task to the top of its group
+      def promote(prefix)
+        full, group_name, offset_in_group = search(prefix)
+        self.remove_from_group(group_name, prefix)
+        self.prepend_to_group(group_name, full)
       end
     
       def to_a

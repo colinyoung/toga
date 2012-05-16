@@ -1,9 +1,10 @@
 CURRENT
 
+Make toga commit interactive
+Prepend "[x]" items to tasks
 ! If you use a random heading in your file, the system includes its tasks in the preceding group
 Print group name even if group is empty
 Synchronize how docs refer to "complete" with the codebase
-Prepend "[x]" items to tasks
 
 LATER
 

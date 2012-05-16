@@ -3,7 +3,13 @@ module Toga
     class Top < Command
       
       def self.run!(*args)
-        lines = Togafile.lines_in_group(:current)
+        # Move the given task to the top of the group
+        if args.first && args.first.count > 0
+          Togafile.promote(args.first.join(' '))
+        end
+        
+        lines = Togafile.lines_in_group(:current)        
+        
         lines.shift
         lines.delete_if {|l| l.strip.length == 0 }
         
