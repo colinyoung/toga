@@ -67,6 +67,15 @@ module Toga
         full = self.remove_from_group(from, prefix)
         self.append_to_group(to, full)
       end
+      
+      def search(prefix)
+        lines = self.to_a
+        offset = lines.includes_prefix?(prefix)
+        group_name = group_at(offset)
+        full = lines[offset]
+        offset_in_group = offset - group_range(group_name).first
+        [full, group_name, offset_in_group]
+      end
     
       def to_a
         file_handle.collect { |l| l.strip }
@@ -98,6 +107,21 @@ module Toga
         end
         
         Range.new(range_start, range_end)
+      end
+      
+      def group_at(offset)
+        group = ""
+        file_handle.each_with_index do |line, i|
+          if line.starts_with?(CATEGORY_HEADINGS, case_sensitive: false)
+            group = line[0../\W/ =~ line].strip
+          end
+          
+          if i >= offset
+            return group
+          end
+        end
+        
+        group
       end
       
       def overwrite(lines)

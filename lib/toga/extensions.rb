@@ -1,3 +1,5 @@
+require 'yaml'
+
 class String
   def starts_with?(prefix, options={})
     if prefix.is_a? Array
@@ -23,5 +25,38 @@ class Array
       return i if str.starts_with?(prefix)
     end
     false
+  end
+end
+
+module Git
+  class Status
+    
+    # Retrieves files that are ignored
+    def ignored
+      ignored = @base.lib.send :command, 'clean', '-ndX'
+      ignored = ignored.split("\n").collect {|i| i.gsub('Would remove ', '') }
+      files = @files.values.dup
+      subdirectory_ignores = {}
+      ignored.each do |i|
+        if !i[/\/(|\*)$/].nil? # ends in either / or /*
+          files.each do |f|
+            if f.path.starts_with?(i)
+              subdirectory_ignores[f.path] = f
+            end
+          end
+        end
+      end
+      subdirectory_ignores
+    end
+    
+    def untracked!
+      ignored_paths = self.ignored.keys
+      self.untracked.reject {|k,v| ignored_paths.include?(v.path) }
+    end
+    
+    def modified
+      regex = /^[0]+$/
+      added.select {|k,v| v.sha_index[regex] && v.sha_repo[regex] }
+    end
   end
 end

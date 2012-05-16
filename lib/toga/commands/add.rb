@@ -4,7 +4,7 @@ module Toga
       
       def self.run!(*args)
         Togafile.append_to_group :current, args.join(' ')
-        puts Togafile.lines_in_group :current
+        Togafile.lines_in_group :current
       end
     end
   end

@@ -26,7 +26,12 @@ module Toga
         end
       end
         
-      @command.run! @args
+      result = @command.run!(@args)
+      if result.is_a? String
+        $stdout.puts result
+      end
+      
+      result
     end
     
     def usage!

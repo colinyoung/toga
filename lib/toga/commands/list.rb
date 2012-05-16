@@ -3,11 +3,15 @@ module Toga
     class List < Command
       
       def self.run!(*args)
+        out = ""
+        
         group_names = args.first.empty? ? [:current, :later] : args.first
         group_names.each_with_index do |n, i|
-          puts Togafile.lines_in_group(n)
-          if i < group_names.length-1 then puts ""; end
+          out << Togafile.lines_in_group(n).join("\n")
+          if i < group_names.length-1 then out << ""; end
         end
+        
+        out
       end
     end
   end

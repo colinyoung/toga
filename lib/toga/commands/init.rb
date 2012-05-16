@@ -17,7 +17,7 @@ module Toga
           f.write File.open(togafile).read
         end
         
-        puts "Created #{Toga::TOGAFILE_NAME} in #{dir}."
+        "Created #{Toga::TOGAFILE_NAME} in #{dir}."
       end
       
     end
