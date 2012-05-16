@@ -4,3 +4,4 @@ Gemfile.lock
 pkg/*
 spec/test_output
 .DS_Store
+temp/
