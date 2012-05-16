@@ -40,6 +40,8 @@ This will stage a git commit with your commit already set to your todo's text; y
 
 Now, check your `Togafile`:
 
+  $ toga list
+
 	CURRENT
 	
 	Write better regexes
