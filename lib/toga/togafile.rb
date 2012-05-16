@@ -38,8 +38,13 @@ module Toga
       end
       
       def remove_from_group(group_name, string)
-        group_start = group_range(group_name).first
-        index = group_start + lines_in_group(group_name).includes_prefix?(string)
+        offset = lines_in_group(group_name).includes_prefix?(string)
+        if !offset
+          puts "[Warning] Task '#{string}' doesn't exist in #{group_name}."
+          return
+        end
+        range = group_range(group_name)
+        index = range.first + offset
         
         # Insert string at the end of the group
         lines = self.to_a
