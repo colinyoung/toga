@@ -28,6 +28,8 @@ module Toga
       end
     
       def append_to_group(group_name, string)
+        strip!
+        
         lines = self.to_a
         range = group_range(group_name)
         last_index = range.last
@@ -40,6 +42,8 @@ module Toga
       end
       
       def prepend_to_group(group_name, string)
+        strip!
+        
         lines = self.to_a
         range = group_range(group_name)
         first_index = range.first + 1 # Add one to bypass title
@@ -142,6 +146,37 @@ module Toga
         end
         
         group
+      end
+      
+      # Cleans all the whitespace in the file.
+      def strip!
+        lines = self.to_a
+        line_after_heading = false
+        in_group = ""
+        copy = []
+        lines.each_with_index do |line, i|
+          if line_after_heading == true
+            # Insert a blank line before the start of a group
+            copy << ""
+            
+            line_after_heading = false
+          end
+          
+          unless line == ""
+            # Copy the line
+            copy << line
+          end
+          
+          in_group = line.match(HEADING_REGEX)
+          if in_group
+            # Insert a blank line after the end of a group
+            copy.insert copy.length-1, "" unless i == 0
+            line_after_heading = true
+          end
+          
+        end
+        
+        overwrite(copy)
       end
       
       def overwrite(lines)

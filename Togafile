@@ -1,20 +1,16 @@
 CURRENT
 
+Regularly clean up whitespace in Togafile
 Fix the add command.
 Toga add is writing output from program
 Ensure completed task moves to completed group
 Prepend completed tasks instead of appending
-Regularly clean up whitespace in Togafile
 Synchronize how docs refer to "complete" with the codebase
 
 LATER
 
-
 Append timestamps on complete
 Append commit logs on push
-
-
-
 Add later
 
 MAYBE
@@ -23,13 +19,10 @@ Import previous git commit messages and put into completed group, so that toga i
 Scan for @todos in project and create `later` tasks for them
 Support multiline tasks (kind of don't want to)
 
-
-
 COMPLETED
+
 Make toga commit interactive
 ! If you use a random heading in your file, the system includes its tasks in the preceding group
-
-
 Update readme with correct init cmd.
 Add later command and current command.
 Add completed command
