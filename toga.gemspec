@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = Toga::VERSION
   s.authors     = ["Colin Young"]
   s.email       = ["me@colinyoung.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "https://github.com/colinyoung/toga"
+  s.summary     = %q{a todo list that integrates seamlessly with git}
+  s.description = %q{a todo list that integrates seamlessly with git}
 
   s.rubyforge_project = "toga"
 
