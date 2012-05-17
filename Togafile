@@ -1,6 +1,8 @@
 CURRENT
 
-Add completed command
+Toga add is writing output from program
+Ensure completed task moves to completed group
+Prepend completed tasks instead of appending
 Regularly clean up whitespace in Togafile
 Synchronize how docs refer to "complete" with the codebase
 
@@ -29,3 +31,4 @@ Make toga commit interactive
 
 Update readme with correct init cmd.
 Add later command and current command.
+Add completed command
