@@ -1,5 +1,6 @@
 CURRENT
 
+Fix the add command.
 Toga add is writing output from program
 Ensure completed task moves to completed group
 Prepend completed tasks instead of appending
