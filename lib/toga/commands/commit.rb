@@ -26,7 +26,9 @@ module Toga
         files_to_add = '.'
         if untracked.count > 0 || modified.count > 0 || added.count == 0
           if untracked.count > 0
+            files_to_add = [] if files_to_add.is_a? String
             puts error("You didn't add the following files:\n")
+            files_to_add.concat untracked
             puts untracked.join("\n") + "\n\n"
           end
           
@@ -37,7 +39,8 @@ module Toga
           
           if added.count == 0
             changed = git.status.changed.keys
-            files_to_add = changed
+            files_to_add = [] if files_to_add.is_a? String
+            files_to_add.concat changed
             puts error("The following files are modified, but their changes aren't added:\n")
             puts changed.join("\n") + "\n\n"
           end
