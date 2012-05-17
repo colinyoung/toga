@@ -1,10 +1,8 @@
 CURRENT
 
-Update readme with correct init cmd.
 Regularly clean up whitespace in Togafile
 Synchronize how docs refer to "complete" with the codebase
 
-Add later command and current command.
 LATER
 
 
@@ -28,4 +26,5 @@ Make toga commit interactive
 ! If you use a random heading in your file, the system includes its tasks in the preceding group
 
 
-
+Update readme with correct init cmd.
+Add later command and current command.
