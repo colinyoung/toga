@@ -1,5 +1,6 @@
 CURRENT
 
+Update readme with correct init cmd.
 Regularly clean up whitespace in Togafile
 Synchronize how docs refer to "complete" with the codebase
 

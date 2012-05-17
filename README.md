@@ -12,6 +12,7 @@ Toga is a rubygem.
 
 ## Usage
 
+	$ toga init .
 	$ mate Togafile
 	
 	
