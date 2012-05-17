@@ -76,7 +76,7 @@ module Toga
         full
       end
       
-      def move(prefix, move_hash)
+      def move(prefix, move_hash, options)
         from  = move_hash.keys.first
         to    = move_hash.values.first
         if !lines_in_group(from).includes_prefix?(prefix)
@@ -84,7 +84,11 @@ module Toga
         end
         
         full = self.remove_from_group(from, prefix)
-        self.append_to_group(to, full)
+        if options[:prepend]
+          self.prepend_to_group(to, full)
+        else
+          self.append_to_group(to, full)
+        end          
       end
       
       def search(prefix)

@@ -1,7 +1,5 @@
 CURRENT
 
-Fix the add command.
-Prepend completed tasks instead of appending
 Synchronize how docs refer to "complete" with the codebase
 Add dashes in front of tasks on strip
 Ensure completed task moves to completed group
@@ -21,6 +19,7 @@ Support multiline tasks (kind of don't want to)
 
 COMPLETED
 
+Prepend completed tasks instead of appending
 Make toga commit interactive
 ! If you use a random heading in your file, the system includes its tasks in the preceding group
 Update readme with correct init cmd.
