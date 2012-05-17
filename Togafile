@@ -1,5 +1,6 @@
 CURRENT
 
+Regularly clean up whitespace in Togafile
 Synchronize how docs refer to "complete" with the codebase
 
 Add later command and current command.
@@ -12,6 +13,7 @@ Append commit logs on push
 
 
 Add later
+
 MAYBE
 
 Import previous git commit messages and put into completed group, so that toga is already sexy
