@@ -1,8 +1,6 @@
 CURRENT
 
-Synchronize how docs refer to "complete" with the codebase
 Add dashes in front of tasks on strip
-Ensure completed task moves to completed group
 Handle misspelled tasks
 
 LATER
@@ -19,6 +17,7 @@ Support multiline tasks (kind of don't want to)
 
 COMPLETED
 
+Ensure completed task moves to completed group
 Prepend completed tasks instead of appending
 Make toga commit interactive
 ! If you use a random heading in your file, the system includes its tasks in the preceding group
