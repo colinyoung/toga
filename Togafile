@@ -1,11 +1,11 @@
 CURRENT
 
-Regularly clean up whitespace in Togafile
 Fix the add command.
-Toga add is writing output from program
-Ensure completed task moves to completed group
 Prepend completed tasks instead of appending
 Synchronize how docs refer to "complete" with the codebase
+Add dashes in front of tasks on strip
+Ensure completed task moves to completed group
+Handle misspelled tasks
 
 LATER
 
@@ -26,3 +26,4 @@ Make toga commit interactive
 Update readme with correct init cmd.
 Add later command and current command.
 Add completed command
+Regularly clean up whitespace in Togafile

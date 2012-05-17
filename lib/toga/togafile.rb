@@ -35,7 +35,8 @@ module Toga
         last_index = range.last
         
         # Insert string at the end of the group
-        lines.insert(last_index+1, string)
+        last_index += 1 if lines[last_index].strip != ""
+        lines.insert(last_index, string)
         
         # Write array back to file
         overwrite(lines)
