@@ -28,6 +28,7 @@ module Toga
           
             File.open(File.expand_path(File.join(dir, '.gitignore')), 'a') do |f|
               f.write Toga::TOGAFILE_NAME
+              f.write "\n"
               f.write Toga::CONFIGFILE_NAME
             end
           end

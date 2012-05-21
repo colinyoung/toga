@@ -1,5 +1,6 @@
 CURRENT
 
+Fix .gitignore edit error
 Add dashes in front of tasks on strip
 Handle misspelled tasks
 
