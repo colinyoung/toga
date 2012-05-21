@@ -5,6 +5,7 @@ module Toga
   TOGAFILE_NAME = 'Togafile'
 end
 
+require "toga/config"
 require "toga/extensions"
 require "toga/version"
 require "toga/error"

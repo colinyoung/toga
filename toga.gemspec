@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   # s.add_development_dependency "rspec"
   s.add_runtime_dependency "git"
   
+  s.add_development_dependency 'ruby-debug19'
   s.add_development_dependency 'require_relative'
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'mocha'
