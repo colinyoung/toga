@@ -1,6 +1,5 @@
 CURRENT
 
-Fix .gitignore edit error
 Add dashes in front of tasks on strip
 Handle misspelled tasks
 
@@ -18,6 +17,7 @@ Support multiline tasks (kind of don't want to)
 
 COMPLETED
 
+Fix .gitignore edit error
 Add edit command for toga.
 Ensure completed task moves to completed group
 Prepend completed tasks instead of appending
