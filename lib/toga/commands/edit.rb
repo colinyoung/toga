@@ -17,8 +17,7 @@ module Toga
         when "mate"
           args.push "-a"
         end
-          
-        puts "#{config.editor} #{Dir.getwd}/#{Toga::TOGAFILE_NAME} #{args.join(" ")}"
+        
         system "#{config.editor} #{Dir.getwd}/#{Toga::TOGAFILE_NAME} #{args.join(" ")}"
       end
     end

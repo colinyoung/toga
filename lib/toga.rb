@@ -3,6 +3,7 @@ $:.unshift File.dirname(File.join(__FILE__))
 module Toga
   SCAFFOLD_PATH = File.join(File.dirname(__FILE__), 'toga/scaffold')
   TOGAFILE_NAME = 'Togafile'
+  CONFIGFILE_NAME = '.toga'
 end
 
 require "toga/config"

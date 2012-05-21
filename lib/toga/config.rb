@@ -1,5 +1,3 @@
-CONFIGFILE = ".toga"
-
 module Toga
   class Config
     
@@ -14,7 +12,7 @@ module Toga
     end
     
     def self.load!
-      f = File.join(Dir.getwd, CONFIGFILE)
+      f = File.join(Dir.getwd, Toga::CONFIGFILE_NAME)
       self.new(f)
     end
     
