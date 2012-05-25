@@ -11,7 +11,6 @@ module Toga
         untracked = git.status.untracked!.keys
         modified = git.status.modified.keys
         added = git.status.added.keys
-        subproject_files = git.status.subproject_files.keys
         
         # Get the git message to commit with
         message = Toga::Commands::Top.run!
@@ -38,7 +37,7 @@ module Toga
             puts modified.join("\n") + "\n\n"
           end
           
-          if added.count == 0
+          if added.count == 0 && untracked.count == 0
             changed = git.status.changed.keys
             files_to_add = [] if files_to_add.is_a? String
             files_to_add.concat changed

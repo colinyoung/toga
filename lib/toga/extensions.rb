@@ -50,8 +50,16 @@ module Git
     end
     
     def untracked!
-      ignored_paths = self.ignored.keys + self.subproject_files.keys
-      self.untracked.reject {|k,v| ignored_paths.include?(v.path) }
+      ignored_files = self.ignored.keys
+      subproject_directories = self.subproject_files.keys
+      self.untracked.reject do |k,v|
+        (lambda do
+          return true if ignored_files.include?(k)
+          subproject_directories.map {|d| return true if k.starts_with?(d) }
+          
+          false
+        end).call
+      end
     end
     
     def subproject_files
