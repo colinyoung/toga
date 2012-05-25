@@ -11,6 +11,7 @@ module Toga
         untracked = git.status.untracked!.keys
         modified = git.status.modified.keys
         added = git.status.added.keys
+        subproject_files = git.status.subproject_files.keys
         
         # Get the git message to commit with
         message = Toga::Commands::Top.run!

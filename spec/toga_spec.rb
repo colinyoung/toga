@@ -8,7 +8,8 @@ require_relative '../lib/toga'
 describe Toga::CLI do
   before do
     # => pass
-    @directory = File.expand_path(File.dirname(__FILE__) + '/test_output')
+    @specdir = File.expand_path(File.dirname(__FILE__))
+    @directory = File.join(@specdir + '/test_output')
   end
 
   describe 'init' do
@@ -56,6 +57,24 @@ describe Toga::CLI do
     end
   end
   
+  describe 'submodules' do
+    before do
+      seed_togafile
+      @git_directory = seed_git_repo
+    end
+    
+    it 'commits and ignores list of subproject files' do
+      
+      g = Git.open(@git_directory)
+      # Open the git repo
+
+      subproject_files = g.status.subproject_files
+      
+      # Ensure output contains the test submodule
+      subproject_files.keys.include?('sample_submodule').must_equal(true)
+    end
+  end
+  
   after do
     # I hardcoded this so that the tests can't seriously screw you up
     safe_clean
@@ -75,6 +94,33 @@ describe Toga::CLI do
     Toga::Commands::Init.run! [@directory]
     File.directory?(@directory).must_equal(true)
     File.exists?(test_togafile).must_equal(true)
+  end
+  
+  def seed_git_repo
+    git_directory = File.join(@directory, 'git_repo')
+    if File.directory?(git_directory)
+      FileUtils.rm_rf(git_directory)
+    end
+    
+    # Create new git directory
+    Dir.mkdir(git_directory)
+    
+    Dir.chdir(git_directory) do
+      # Create repo in it
+      %x[git init .]
+      
+      # Write a sample file
+      File.open('temp','w') {|f| f.puts " " }
+      
+      # Add file to git index
+      %x[git add temp]
+      %x[git commit -m "first commit (from minitest)"]
+      
+      # Add a submodule
+      %x[git submodule add #{File.join(@specdir, 'sample_submodule')}]
+    end
+    
+    git_directory
   end
   
   def add_new_task(task)

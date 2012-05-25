@@ -1,19 +1,20 @@
 CURRENT
 
-Add dashes in front of tasks on strip
+Fix issues with committing displaying ignored files.
 Handle misspelled tasks
 
 LATER
 
 Append timestamps on complete
 Append commit logs on push
-Add later
+Add maybe command
 
 MAYBE
 
 Import previous git commit messages and put into completed group, so that toga is already sexy
 Scan for @todos in project and create `later` tasks for them
 Support multiline tasks (kind of don't want to)
+Add dashes in front of tasks on strip
 
 COMPLETED
 

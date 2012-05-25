@@ -50,8 +50,31 @@ module Git
     end
     
     def untracked!
-      ignored_paths = self.ignored.keys
+      ignored_paths = self.ignored.keys + self.subproject_files.keys
       self.untracked.reject {|k,v| ignored_paths.include?(v.path) }
+    end
+    
+    def subproject_files
+      return @base.lib.submodules if @base.lib.respond_to? :submodules
+        
+      # Ruby-git doesn't support submodules, so do
+      # them manually
+      submodules = {}
+      
+      Dir.chdir(@base.dir.to_s) do 
+        lines = %x[git submodule status]
+      
+        lines.split("\n").each do |l|
+          exp = /([\-0-9A-f]+) ([^ ]+)/
+          m = exp.match(l)
+          ref = m[1]
+          path = m[2]
+        
+          submodules[path] = {:ref => ref, :path => path}
+        end
+      end
+      
+      submodules
     end
     
     def modified
