@@ -1,6 +1,5 @@
 CURRENT
 
-Fix issues with committing displaying ignored files.
 Handle misspelled tasks
 
 LATER
@@ -18,6 +17,7 @@ Add dashes in front of tasks on strip
 
 COMPLETED
 
+Fix issues with committing displaying ignored files.
 Fix .gitignore edit error
 Add edit command for toga.
 Ensure completed task moves to completed group
