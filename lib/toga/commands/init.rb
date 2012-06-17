@@ -26,7 +26,7 @@ module Toga
           git = Git.open(File.expand_path(File.join(dir)))
           if !git.status.ignored.keys.include?(Toga::TOGAFILE_NAME)
           
-            File.open(File.expand_path(File.join(dir, '.gitignore')), 'a') do |f|
+            File.open(File.expand_path(File.join(dir, '.git/info/exclude')), 'a') do |f|
               f.write Toga::TOGAFILE_NAME
               f.write "\n"
               f.write Toga::CONFIGFILE_NAME
