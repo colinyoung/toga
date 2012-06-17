@@ -72,7 +72,7 @@ module Toga
         end
         
         puts "# Add an optional message (or press enter): "
-        full_message = message << $stdin.gets
+        full_message = message << "\n\n" << $stdin.gets
         `git commit -m "#{full_message.gsub(/"/, '\"')}"`
         
         Commands::Complete.run!(message)
